@@ -1,4 +1,5 @@
 # TabletProject
+THe tablet based game about recycling.
 
 # Git Workflow
 After working on files inside the unreal project, open the Git Bash in the project folder (right-click and select 'Git Bash here').
