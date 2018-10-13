@@ -41,6 +41,12 @@ public:
 	UFUNCTION()
 	void MoveRight(float Delta);
 
+	UFUNCTION()
+	void StartJump();
+
+	UFUNCTION()
+	void StopJump();
+
 	
 	
 };

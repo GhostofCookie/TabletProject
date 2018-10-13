@@ -2,6 +2,8 @@
 
 #include "TopDownCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
 
@@ -19,13 +21,20 @@ ATopDownCharacter::ATopDownCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bAbsoluteRotation = true;
 	CameraBoom->TargetArmLength = 1500.f;
-	CameraBoom->RelativeRotation = FRotator(-45.0f, 0.f, 0.0f);
+	CameraBoom->bEnableCameraLag = true;
+	CameraBoom->bEnableCameraRotationLag = true;
+	CameraBoom->CameraLagSpeed = 10.f;
+	CameraBoom->RelativeRotation = FRotator(0.f, 0.f, 0.f);
 	CameraBoom->bDoCollisionTest = false;
 
 	// Attach the camera to the boom.
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	Camera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	Camera->bUsePawnControlRotation = false;
+
+	GetCharacterMovement()->JumpZVelocity = 600.f;
+
+	
 
 }
 
@@ -48,8 +57,11 @@ void ATopDownCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &ATopDownCharacter::MoveForward);
+	// PlayerInputComponent->BindAxis("MoveForward", this, &ATopDownCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ATopDownCharacter::MoveRight);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ATopDownCharacter::StartJump);
+	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ATopDownCharacter::StopJump);
 }
 
 void ATopDownCharacter::MoveForward(float Delta)
@@ -62,5 +74,15 @@ void ATopDownCharacter::MoveRight(float Delta)
 {
 	FVector Direction = FRotationMatrix(GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, Delta);
+}
+
+void ATopDownCharacter::StartJump()
+{
+	bPressedJump = true;
+}
+
+void ATopDownCharacter::StopJump()
+{
+	bPressedJump = false;
 }
 
