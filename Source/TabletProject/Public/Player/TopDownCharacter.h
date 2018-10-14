@@ -26,9 +26,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = Mesh)
-	UStaticMeshComponent* CharacterMesh;
-
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = Camera)
 	class UCameraComponent* Camera;
 

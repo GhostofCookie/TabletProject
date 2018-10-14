@@ -13,9 +13,6 @@ ATopDownCharacter::ATopDownCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	CharacterMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("PlayerMesh"));
-	CharacterMesh->SetupAttachment(RootComponent);
-
 	// Setting up the spring arm for the camera.
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -57,8 +54,8 @@ void ATopDownCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	// PlayerInputComponent->BindAxis("MoveForward", this, &ATopDownCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ATopDownCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ATopDownCharacter::MoveForward);
+	// PlayerInputComponent->BindAxis("MoveRight", this, &ATopDownCharacter::MoveRight);
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ATopDownCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ATopDownCharacter::StopJump);
