@@ -57,8 +57,8 @@ void ATopDownCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis("MoveForward", this, &ATopDownCharacter::MoveForward);
 	// PlayerInputComponent->BindAxis("MoveRight", this, &ATopDownCharacter::MoveRight);
 
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ATopDownCharacter::StartJump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ATopDownCharacter::StopJump);
+	PlayerInputComponent->BindAxis("Jump", this, &ATopDownCharacter::StartJump);
+	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ATopDownCharacter::StopJump);
 }
 
 void ATopDownCharacter::MoveForward(float Delta)
@@ -73,9 +73,11 @@ void ATopDownCharacter::MoveRight(float Delta)
 	AddMovementInput(Direction, Delta);
 }
 
-void ATopDownCharacter::StartJump()
+void ATopDownCharacter::StartJump(float Delta)
 {
+	if(Delta >= .5)
 	bPressedJump = true;
+	else bPressedJump = false;
 }
 
 void ATopDownCharacter::StopJump()
