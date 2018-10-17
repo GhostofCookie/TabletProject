@@ -39,7 +39,7 @@ public:
 	void MoveRight(float Delta);
 
 	UFUNCTION()
-	void StartJump();
+	void StartJump(float Delta);
 
 	UFUNCTION()
 	void StopJump();
