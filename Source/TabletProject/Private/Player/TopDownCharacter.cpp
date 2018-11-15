@@ -21,7 +21,7 @@ ATopDownCharacter::ATopDownCharacter()
 	CameraBoom->bEnableCameraLag = true;
 	CameraBoom->bEnableCameraRotationLag = true;
 	CameraBoom->CameraLagSpeed = 10.f;
-	CameraBoom->RelativeRotation = FRotator(0.f, 0.f, 0.f);
+	CameraBoom->RelativeRotation = FRotator(-10.f, 0.f, 0.f);
 	CameraBoom->bDoCollisionTest = false;
 
 	// Attach the camera to the boom.
