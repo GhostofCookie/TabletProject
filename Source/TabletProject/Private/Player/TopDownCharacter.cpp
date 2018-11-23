@@ -17,7 +17,7 @@ ATopDownCharacter::ATopDownCharacter()
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bAbsoluteRotation = true;
-	CameraBoom->TargetArmLength = 1500.f;
+	CameraBoom->TargetArmLength = 1250.f;
 	CameraBoom->bEnableCameraLag = true;
 	CameraBoom->bEnableCameraRotationLag = true;
 	CameraBoom->CameraLagSpeed = 10.f;
