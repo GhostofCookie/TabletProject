@@ -38,8 +38,8 @@ public:
 	UFUNCTION()
 	void MoveRight(float Delta);
 
-	UFUNCTION()
-	void StartJump(float Delta);
+	UFUNCTION(BlueprintCallable)
+	void StartJump();
 
 	UFUNCTION()
 	void StopJump();
